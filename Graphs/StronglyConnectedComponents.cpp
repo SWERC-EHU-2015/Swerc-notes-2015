@@ -12,7 +12,7 @@ vb visited, currentSCC;
 int nodeCount, numSCC;
 
 /* num[i] = orden en el que se visita por primera vez el nodo i */
-/* low[i] = mínimo num alcanzable desde el nodo i y desde sus hijos en la búsqueda */
+/* low[i] = minimo num alcanzable desde el nodo i y desde sus hijos en la busqueda */
 /* currentSCC[i] <=> el nodo i forma parte del SCC que se está explorando */
 /* S = Pila que guarda los nodos según el orden en que se exploran */
 /* Los nodos que forman cada componente quedan en scc */
@@ -38,16 +38,10 @@ void dfs(int u) {
 		numSCC++; /* Si solo se desea el número de SCCs, el vector scc sobra */
 	}
 }
-
 /* Ejemplo de main, donde N es el número de nodos*/
-// adj = vii(N, vi());
-// scc = vii();
-// num = vi(N);
-// low = vi(N);
-// S = vi();
-// visited = vb(N);
-// currentSCC = vb(N);
-// nodeCount = numSCC = 0;
+// adj = vii(N, vi()); scc = vii(); num = vi(N); low = vi(N);
+// S = vi(); visited = vb(N);
+// currentSCC = vb(N); nodeCount = numSCC = 0;
 /* Rellenar la lista de adyacencia */
 // for (int i = 0; i < N; ++i)
 // 	if (!visited[i])

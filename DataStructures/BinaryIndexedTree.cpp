@@ -4,8 +4,7 @@ using namespace std;
 typedef vector<int> vi;
 #define LSOne(S) (S & (-S))
 
-// Queries for dynamic RSQ in O(log n), elements numbered from 1 to n
-class FenwickTree {
+class FenwickTree { // Queries for dynamic RSQ in O(log n), elements numbered from 1 to n
 private:
   vi ft;
 public:

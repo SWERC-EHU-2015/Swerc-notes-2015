@@ -6,52 +6,47 @@
 tex_file=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 cat<<EOF >$tex_file   ## Print the tex file header
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 10pt]{article}
 \usepackage[cm]{fullpage}
 \usepackage{anyfontsize}
 \usepackage{listings}
-\usepackage[usenames,dvipsnames]{color}  %% Allow color names
+\usepackage[margin=1 cm, includefoot]{geometry}
+\usepackage[usenames,dvipsnames]{xcolor}  %% Allow color names
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{1,1,1} %% White background
-%% \definecolor{backcolour}{rgb}{0.95,0.95,0.92} # Grey background
-\lstdefinestyle{customasm}{
-  backgroundcolor=\color{backcolour},
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  basicstyle=\fontsize{8}{9}\selectfont,
-  breakatwhitespace=false,         
-  breaklines=true,  %% Wrap long lines
-  captionpos=b,
-  keepspaces=true,
-  numbers=left,
-  numbersep=5pt,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  tabsize=2
-}
-\usepackage[colorlinks=true,linkcolor=blue]{hyperref} 
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
 \begin{document}
 \lstset{inputencoding=utf8}
 \lstset{extendedchars=true}
-\lstset{
-  literate=%
-  {á}{{\'{a}}}1
-  {é}{{\'{e}}}1
-  {í}{{\'{i}}}1
-  {ó}{{\'{o}}}1
-  {ú}{{\'{u}}}1
-  {Á}{{\'{a}}}1
-  {É}{{\'{e}}}1
-  {Í}{{\'{i}}}1
-  {Ó}{{\'{o}}}1
-  {Ú}{{\'{u}}}1
-  {ñ}{{\v{n}}}1
-  {Ñ}{{\v{N}}}1
+\newcommand{\ProcessDigit}[1]{\bfseries \color{orange!75!black} #1}
+\lstset{%
+	backgroundcolor=\color{white},
+	basicstyle=\footnotesize\ttfamily,
+	commentstyle=\itshape\color{white!25!black},
+	keywordstyle=\bfseries\color{deepblue},
+	stringstyle=\color{deepgreen},
+	identifierstyle=\color{orange!20!black},
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{white!50!black},
+	xleftmargin=0.5cm,
+	tabsize=4,
+	breaklines=true,
+	literate=
+	{0}{{{\ProcessDigit{0}}}}1
+	{1}{{{\ProcessDigit{1}}}}1
+	{2}{{{\ProcessDigit{2}}}}1
+	{3}{{{\ProcessDigit{3}}}}1
+	{4}{{{\ProcessDigit{4}}}}1
+	{5}{{{\ProcessDigit{5}}}}1
+	{6}{{{\ProcessDigit{6}}}}1
+	{7}{{{\ProcessDigit{7}}}}1
+	{8}{{{\ProcessDigit{8}}}}1
+	{9}{{{\ProcessDigit{9}}}}1,
 }
 \tableofcontents
 \newpage
@@ -73,15 +68,15 @@ while read i; do   ## Loop through each file
   if [ "$extension" = "cpp"  ] ; then language="C++"  ; fi
   if [ "$extension" = "java" ] ; then language="Java" ; fi
   if [ "$prevsection" != "$dirname" ] ; then
-    echo "\section{\fontsize{12}{14}\selectfont $dirname}" >> $tex_file
-    prevsection=$dirname
+	echo "\section{\fontsize{12}{14}\selectfont $dirname}" >> $tex_file
+	prevsection=$dirname
   fi
   echo "\subsection{\fontsize{10}{12}\selectfont $filename}" >> $tex_file
-  echo "\lstinputlisting[style=customasm,language=$language]{$i} \\*" >>$tex_file   ## Include the file in the PDF
+  echo "\lstinputlisting[language=$language]{$i} \\*" >>$tex_file   ## Include the file in the PDF
 done &&
 echo "\end{document}" >> $tex_file &&
 
-pdflatex $tex_file -output-directory . && 
+pdflatex $tex_file -output-directory . &&
 pdflatex $tex_file -output-directory . ## This needs to be run twice for the TOC to be generated
 
 mv $tex_file.pdf notebook.pdf

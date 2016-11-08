@@ -1,4 +1,3 @@
-
 public class EditDistance {
     
     public static final EditDistance LEVENSHTEIN_DISTANCE = new EditDistance(2, -1, -1, -1);

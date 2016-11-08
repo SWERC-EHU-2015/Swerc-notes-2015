@@ -13,7 +13,6 @@ long long euler_totient2(long long n, long long ps) {
     }
     return n - 1;
 }
-
 long long euler_totient(long long n) {
     return euler_totient2(n, 2);
 }

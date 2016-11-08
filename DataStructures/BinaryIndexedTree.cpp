@@ -1,12 +1,8 @@
-#include <vector>
-
-using namespace std;
-typedef vector<int> vi;
 #define LSOne(S) (S & (-S))
 
 class FenwickTree { // Queries for dynamic RSQ in O(log n), elements numbered from 1 to n
 private:
-  vi ft;
+  VI ft;
 public:
   FenwickTree(int n) : ft(n+1, 0) {} // initialization: n + 1 zeroes, ignore index 0
   int rsq(int b) { int sum = 0; for (; b; b -= LSOne(b)) sum += ft[b]; return sum; } // RSQ(1, b)

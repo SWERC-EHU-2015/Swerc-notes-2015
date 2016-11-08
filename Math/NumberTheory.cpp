@@ -2,15 +2,6 @@
 // involve modular linear equations.  Note that all of the
 // algorithms described here work on nonnegative integers.
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-typedef vector<int> VI;
-typedef pair<int,int> PII;
-
 // return a % b (positive value)
 int mod(int a, int b) {
   return ((a%b)+b)%b;

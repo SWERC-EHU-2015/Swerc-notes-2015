@@ -1,7 +1,3 @@
-#include <vector>
-#include <functional>
-using namespace std;
-
 template<typename T, typename Op>
 class SegmentTree {
     Op op; vector<T> a, st; size_t n;
@@ -40,7 +36,7 @@ class MinimumIndexSegmentTree {
 public:
     template <typename InputIterator>
     MinimumIndexSegmentTree(InputIterator first, InputIterator last) : a(first, last) {
-        vector<int> aux(last-first);
+        VI aux(last-first);
         for (int i = 0; i < aux.size(); i++) aux[i] = i;
         Op op; op.a = &a;
         st = SegmentTree<size_t, Op>(aux.begin(), aux.end(), op);
@@ -49,6 +45,5 @@ public:
     int query(int lo, int hi) { return st.query(lo, hi); } // Both inclusive
     void set(int i, int v) { a[i] = v; st.update(i); }
 };
-
 typedef SegmentTree<int, plus<int> > RSQ;
 typedef MinimumIndexSegmentTree<int, less<int> > RMQ;

@@ -1,11 +1,8 @@
-#include <algorithm>
-using namespace std;
-
 template<typename T, typename F>
 class BrentCycleDetection {
     F f;
 public:
-    pair<int,int> findCycle(T x0) {
+    PII findCycle(T x0) {
         // 1st part: search successive powers of two
         int power = 1, lambda = 1; T tortoise = x0, hare = f(x0);
         while (tortoise != hare) {
@@ -27,6 +24,6 @@ public:
             hare = f(hare);
             mu++;
         }
-        return pair<int,int>(mu, lambda);
+        return PII(mu, lambda);
     }
 };

@@ -1,14 +1,7 @@
-#include <algorithm>
-#include <vector>
-using namespace std;
-typedef vector<bool> vb;
-typedef vector<int> vi;
-typedef vector<vi> vii;
-
-vii adj, scc;
-vi num, low;
-vi S;
-vb visited, currentSCC;
+VII adj, scc;
+VI num, low;
+VI S;
+VB visited, currentSCC;
 int nodeCount, numSCC;
 
 /* num[i] = orden en el que se visita por primera vez el nodo i */
@@ -30,7 +23,7 @@ void dfs(int u) {
 			low[u] = min(low[u], low[v]); /* desde u alcanzo lo mismo que desde v */
 	}
 	if (low[u] == num[u]) { /* si u es raíz de una SCC */
-		scc.push_back(vi());
+		scc.push_back(VI());
 		do { /* El SCC lo forman los nodos en la pila hasta alcanzar u */
 			v = S.back(); S.pop_back(); currentSCC[v] = 0;
 			scc[numSCC].push_back(v);
@@ -39,9 +32,9 @@ void dfs(int u) {
 	}
 }
 /* Ejemplo de main, donde N es el número de nodos*/
-// adj = vii(N, vi()); scc = vii(); num = vi(N); low = vi(N);
-// S = vi(); visited = vb(N);
-// currentSCC = vb(N); nodeCount = numSCC = 0;
+// adj = VII(N, VI()); scc = VII(); num = VI(N); low = VI(N);
+// S = VI(); visited = VB(N);
+// currentSCC = VB(N); nodeCount = numSCC = 0;
 /* Rellenar la lista de adyacencia */
 // for (int i = 0; i < N; ++i)
 // 	if (!visited[i])

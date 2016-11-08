@@ -1,4 +1,3 @@
-
 public class SuffixArray {
     
     public final int n;

@@ -1,22 +1,11 @@
-// Compute the 2D convex hull of a set of points using the monotone chain
-// algorithm.  Eliminate redundant points from the hull if REMOVE_REDUNDANT is 
-// #defined.
-//
 // Running time: O(n log n)
-//
-//   INPUT:   a vector of input points, unordered.
+// INPUT:   a vector of input points, unordered.
 //   OUTPUT:  a vector of points in the convex hull, counterclockwise, starting
 //            with bottommost/leftmost point
-#include <iostream>
 #include <cstdio>
-#include <cassert>
-#include <vector>
-#include <algorithm>
 #include <cmath>
 
-using namespace std;
-
-#define REMOVE_REDUNDANT
+// #define REMOVE_REDUNDANT // To eliminate redundant points from hull
 
 typedef double T;
 const T EPS = 1e-7;
@@ -72,7 +61,6 @@ int main() {
     vector<PT> puntuak;
     for (int i = 0; i < 4; i++)
         puntuak.push_back(val[i]);
-    
     ConvexHull(puntuak);
     for (int i = 0; i < puntuak.size(); i++)
         cout << puntuak[i].x << " " << puntuak[i].y << endl;

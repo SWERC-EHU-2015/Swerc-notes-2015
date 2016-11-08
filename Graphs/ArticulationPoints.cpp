@@ -1,13 +1,6 @@
-#include <algorithm>
-#include <vector>
-using namespace std;
-typedef vector<bool> vb;
-typedef vector<int> vi;
-typedef vector<vi> vii;
-
-vii adj;
-vi num, low;
-vi parent;
+VVI adj;
+VI num, low;
+VI parent;
 vb visited;
 vb artPoint;
 int nodeCount, root, rootChildren;

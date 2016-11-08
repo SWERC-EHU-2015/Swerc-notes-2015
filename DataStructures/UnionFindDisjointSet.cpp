@@ -1,8 +1,5 @@
-#include <vector>
-using namespace std;
-
 class UnionFindDisjointSet {
-    vector<int> p, setSize; int numSets;
+    VI p, setSize; int numSets;
 public:
     explicit UnionFindDisjointSet(int n) : p(n,-1), setSize(n,1), numSets(n) {}
     int findSet(int i) { return (p[i] < 0) ? i : (p[i] = findSet(p[i])); }

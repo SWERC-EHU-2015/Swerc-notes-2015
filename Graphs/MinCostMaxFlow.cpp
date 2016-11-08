@@ -1,30 +1,14 @@
 // Implementation of min cost max flow algorithm using adjacency
-// matrix (Edmonds and Karp 1972).  This implementation keeps track of
-// forward and reverse edges separately (so you can set cap[i][j] !=
-// cap[j][i]).  For a regular max flow, set all edge costs to 0.
+// matrix.  This implementation keeps track of forward and reverse
+// edges separately (so you can set cap[i][j] != cap[j][i]).
+// For a regular max flow, set all edge costs to 0.
 // Note that negative cost values are not allowed.
-//  
-// INPUT: 
-//     - graph, constructed using AddEdge()
-//     - source
-//     - sink
-//
-// OUTPUT:
-//     - (maximum flow value, minimum cost value)
-//     - To obtain the actual flow, look at positive values only.
+// INPUT: - graph, constructed using AddEdge()
+//        - source
+//        - sink
+// OUTPUT: - (maximum flow value, minimum cost value)
+//         - To obtain the actual flow, look at positive values only.
 #include <cmath>
-#include <vector>
-#include <iostream>
-
-using namespace std;
-
-typedef vector<int> VI;
-typedef vector<VI> VVI;
-typedef long long L;
-typedef vector<L> VL;
-typedef vector<VL> VVL;
-typedef pair<int, int> PII;
-typedef vector<PII> VPII;
 
 const L INF = 1LL << 60;
 

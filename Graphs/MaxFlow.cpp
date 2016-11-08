@@ -1,22 +1,12 @@
 // Adjacency list implementation of Dinic's blocking flow algorithm.
 // This is very fast in practice, and only loses to push-relabel flow.
-//
-// INPUT: 
-//     - graph, constructed using AddEdge()
-//     - source
-//     - sink
-//
-// OUTPUT:
-//     - maximum flow value
-//     - To obtain the actual flow values, look at all edges with
-//       capacity > 0 (zero capacity edges are residual edges).
-
+// INPUT: - graph, constructed using AddEdge()
+//        - source
+//        - sink
+// OUTPUT: - maximum flow value
+//         - To obtain the actual flow values, look at all edges with
+//           capacity > 0 (zero capacity edges are residual edges).
 #include <cmath>
-#include <vector>
-#include <iostream>
-#include <queue>
-
-using namespace std;
 
 const int INF = 2000000000;
 
@@ -30,7 +20,7 @@ struct Dinic {
     int N;
     vector<vector<Edge> > G;
     vector<Edge *> dad;
-    vector<int> Q;
+    VI Q;
 
     Dinic(int N) : N(N), G(N), dad(N), Q(N) {}
 
@@ -75,7 +65,7 @@ struct Dinic {
         }
         return totflow;
     }
-
+    
     long long GetMaxFlow(int s, int t) {
         long long totflow = 0;
         while (long long flow = BlockingFlow(s, t))

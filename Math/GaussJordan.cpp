@@ -1,37 +1,21 @@
 // Gauss-Jordan elimination with full pivoting.
-//
 // Uses:
 //   (1) solving systems of linear equations (AX=B)
 //   (2) inverting matrices (AX=I)
 //   (3) computing determinants of square matrices
-//
 // Running time: O(n^3)
-//
 // INPUT:    a[][] = an nxn matrix
 //           b[][] = an nxm matrix
-//
 // OUTPUT:   X      = an nxm matrix (stored in b[][])
 //           A^{-1} = an nxn matrix (stored in a[][])
 //           returns determinant of a[][]
-
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-using namespace std;
-
 const double EPS = 1e-10;
 
-typedef vector<int> VI;
-typedef double T;
-typedef vector<T> VT;
-typedef vector<VT> VVT;
-
-T GaussJordan(VVT &a, VVT &b) {
+double GaussJordan(VVD &a, VVD &b) {
   const int n = a.size();
   const int m = b[0].size();
   VI irow(n), icol(n), ipiv(n);
-  T det = 1;
+  double det = 1;
 
   for (int i = 0; i < n; i++) {
     int pj = -1, pk = -1;
@@ -46,7 +30,7 @@ T GaussJordan(VVT &a, VVT &b) {
     irow[i] = pj;
     icol[i] = pk;
 
-    T c = 1.0 / a[pk][pk];
+    double c = 1.0 / a[pk][pk];
     det *= a[pk][pk];
     a[pk][pk] = 1.0;
     for (int p = 0; p < n; p++) a[pk][p] *= c;

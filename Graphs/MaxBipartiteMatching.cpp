@@ -8,16 +8,11 @@
 // También es útil para:
 //   Maximum Independent Set = |V| - MCBM
 //	 Minimum Vertex Cover = MCBM
-#include <vector>
-using namespace std;
-typedef vector<int> vi;
-typedef vector<vi> vvi;
-
 class MCBM {
 	int nLeft, nRight;
-	vvi mat_adj;
-	vi mr, mc;
-	bool FindMatch(int i, const vvi &mat_adj, vi &seen) {
+	VVI mat_adj;
+	VI mr, mc;
+	bool FindMatch(int i, const VVI &mat_adj, VI &seen) {
 		for (int j = 0; j < nRight; j++) {
 			if (mat_adj[i][j] && !seen[j]) {
 				seen[j] = true;
@@ -30,17 +25,17 @@ class MCBM {
 	}
 public:
 	MCBM(int NLeft, int NRight) : nLeft(NLeft), nRight(NRight), mr(NLeft, -1), mc(NRight, -1) {
-		mat_adj = vvi(NLeft, vi(NRight));
+		mat_adj = VVI(NLeft, VI(NRight));
 	}
 	void addEdge(int u, int v) { mat_adj[u][v] = 1; }
 	int getMatching() {
 		int ct = 0;
 		for (int i = 0; i < nLeft; i++) {
-			vi seen(nRight);
+			VI seen(nRight);
 			if (FindMatch(i, mat_adj, seen)) ct++;
 		}
 		return ct;
 	}
-	vi getLeftMatches() { return mr; };
-	vi getRightMatches() { return mc; };
+	VI getLeftMatches() { return mr; };
+	VI getRightMatches() { return mc; };
 };

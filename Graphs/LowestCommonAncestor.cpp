@@ -4,17 +4,13 @@
 //  E[i] = i-th node visited in the DFS (Euler tour)
 //  L[i] = levels of the i-th node visited in the DFS (Euler tour)
 //  H[i] = index of the first occurrence of node i in E
-#include <vector>
-using namespace std;
-typedef vector<int> vi;
-
 struct LCA {
 	int idx;
-	vector<vi> adj;
-	vi Par, E, L, H;
+	VVI adj;
+	VI Par, E, L, H;
 	RMQ * rmq;
 
-	LCA(int N, vector<vi> adjlist) :
+	LCA(int N, VVI adjlist) :
 	  idx(0), adj(adjlist), Par(N, -1), E(2*N-1), L(2*N-1), H(N, -1) {
 		dfs(0, 0, 0); // We fix the root at index 0
 		rmq = new RMQ(2*N-1, L);

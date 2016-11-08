@@ -1,10 +1,6 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-inline vector<int> longestIncreasingSubsequence(const vector<int> &a) { // O(n log k)
+inline VI longestIncreasingSubsequence(const vector<int> &a) { // O(n log k)
     int n = a.size(), lsize = 0;
-    vector<int> lval(n), lind(n), rec(n);
+    VI lval(n), lind(n), rec(n);
     for (int i = 0; i < n; i++) {
         int pos = lower_bound(lval.begin(), lval.begin() + lsize, a[i]) - lval.begin();
         lval[pos] = a[i]; lind[pos] = i;
@@ -12,7 +8,7 @@ inline vector<int> longestIncreasingSubsequence(const vector<int> &a) { // O(n l
         if (pos == lsize) lsize++;
     }
     // Recover the solution (return lsize and remove lind and rec if you only need its length)
-    vector<int> res(lsize);
+    VI res(lsize);
     for (int i = lind[lsize-1]; i != -1; i = rec[i]) res[--lsize] = a[i];
     return res;
 }

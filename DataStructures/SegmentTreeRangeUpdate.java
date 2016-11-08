@@ -11,7 +11,7 @@ public class SegmentTreeRangeUpdate {
 	public void build(int curr, int begin, int end, int[] list)	{
 		if(begin == end)
 			leaf[curr] = list[begin];
-		else	{
+		else {
 			int mid = (begin+end)/2;
 			build(2 * curr, begin, mid, list);
 			build(2 * curr + 1, mid+1, end, list);

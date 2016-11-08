@@ -11,13 +11,7 @@
 //
 // The values in cost[i][j] may be positive or negative.  To perform
 // maximization, simply negate the cost[][] matrix.
-#include <algorithm>
 #include <cmath>
-#include <vector>
-using namespace std;
-typedef vector<double> VD;
-typedef vector<VD> VVD;
-typedef vector<int> VI;
 
 double MinCostMatching(const VVD &cost, VI &Lmate, VI &Rmate) {
 	int n = int(cost.size());

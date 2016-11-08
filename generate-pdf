@@ -19,6 +19,9 @@ cat<<EOF >$tex_file   ## Print the tex file header
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+
+\fontsize{8pt}{10pt}
+
 \begin{document}
 \lstset{inputencoding=utf8}
 \lstset{extendedchars=true}
@@ -49,6 +52,12 @@ cat<<EOF >$tex_file   ## Print the tex file header
 	{9}{{{\ProcessDigit{9}}}}1,
 }
 \tableofcontents
+
+\vspace{-1em}
+\section{Oinarrizkoak}
+\vspace{-1em}
+\lstinputlisting[language=C++]{Typedefs.inc}
+
 \newpage
 
 EOF
@@ -71,8 +80,8 @@ while read i; do   ## Loop through each file
 	echo "\section{\fontsize{12}{14}\selectfont $dirname}" >> $tex_file
 	prevsection=$dirname
   fi
-  echo "\subsection{\fontsize{10}{12}\selectfont $filename}" >> $tex_file
-  echo "\lstinputlisting[language=$language]{$i} \\*" >>$tex_file   ## Include the file in the PDF
+  echo "\subsection{\fontsize{10}{12}\selectfont $filename}\vspace{-1em}" >> $tex_file
+  echo "\lstinputlisting[language=$language]{$i}\vspace{-1em} \\*" >>$tex_file   ## Include the file in the PDF
 done &&
 echo "\end{document}" >> $tex_file &&
 

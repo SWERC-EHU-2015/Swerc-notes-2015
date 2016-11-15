@@ -58,8 +58,6 @@ cat<<EOF >$tex_file   ## Print the tex file header
 \vspace{-1em}
 \lstinputlisting[language=C++]{Typedefs.inc}
 
-\newpage
-
 EOF
 
 prevsection=""
